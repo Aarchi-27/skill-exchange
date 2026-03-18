@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Skill Exchange</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h1>💼 Skill Exchange</h1>
+
+<!-- INPUT FORM -->
+<div class="form">
+    <input id="name" placeholder="Your Name">
+    <input id="have" placeholder="Skills you have (comma separated)">
+    <input id="want" placeholder="Skills you want">
+    
+    <button onclick="saveUser()">Submit</button>
+</div>
+
+<h2>All Users</h2>
+<div id="users"></div>
+
+<h2>Matches</h2>
+<div id="matches"></div>
+
+<div id="paymentBox" style="display:none;" class="card">
+    <h3>Pay ₹49 via GPay</h3>
+
+    <!-- GPay Direct Button -->
+    <a href="upi://pay?pa=aarchimodi27@okhdfcbank&pn=SkillSwap&am=49&cu=INR">
+        <button>Pay via GPay 🚀</button>
+    </a>
+
+    <p>OR UPI ID: <b>aarchimodi27@okhdfcbank</b></p>
+
+    <p>After payment click below 👇</p>
+
+    <button onclick="confirmPayment()">I Paid ✅</button>
+</div>
+<script src="script.js"></script>
+
+</body>
+</html>

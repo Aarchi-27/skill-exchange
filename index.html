@@ -4,63 +4,38 @@
     <title>Skill Exchange</title>
     <link rel="stylesheet" href="style.css">
 </head>
-    <div id="loader" style="display:none;">
-    <p>🔍 Finding best matches for you...</p>
-</div>
-    
+
 <body>
 
 <div class="header">
     <h1>🚀 SkillSwap</h1>
     <p>Learn, Teach & Grow with Real People</p>
-    <p>✅ 100+ Students Joined</p>
-    <p>💬 Trusted by Learners</p>
-    <p>⚡ Instant Skill Matching</p>
-    <p>✅ 50+ students already using</p>
-    <p style="color:lightgreen;">⚡ Instant access after payment</p>
-<p>💬 Fast response on WhatsApp</p>
-    <p id="usersCount">👥 12 people using now</p>
 </div>
-<button onclick="saveUser()">Submit</button>
+
 <button onclick="shareSite()">📲 Share & Earn</button>
 
-<h1>💼 Skill Exchange</h1>
-
-<!-- INPUT FORM -->
 <div class="form">
     <input id="name" placeholder="Your Name">
-    <input id="have" placeholder="Skills you have (comma separated)">
+    <input id="have" placeholder="Skills you have">
     <input id="want" placeholder="Skills you want">
-    
+
     <button onclick="saveUser()">Submit</button>
 </div>
 
-<h2>All Users</h2>
 <div id="users"></div>
-
-<h2>Matches</h2>
 <div id="matches"></div>
 
-<!-- PAYMENT POPUP -->
+<!-- POPUP -->
 <div id="paymentPopup" class="popup">
     <div class="popup-content">
-        <h2>Unlock Now ₹49 🔥</h2>
-        <p>Pay ₹49 via GPay</p>
-<a href="https://wa.me/917990392626?text=Hi%20I%20paid%20₹49%20for%20SkillSwap">
-    <p>📞 Contact will be shared via WhatsApp</p>
-    <p id="slots">⚠️ Only few unlocks left today!</p>
-    <button>Chat on WhatsApp 💬</button>
-</a>
+        <h2>Unlock ₹49</h2>
 
-        <p>After payment, upload screenshot 👇</p>
-
-        <input type="file" id="screenshot">
-
-        <button onclick="verifyPayment()">Submit Proof ✅</button>
-        <button onclick="closePopup()">Cancel ❌</button>
+        <button onclick="verifyPayment()">Submit Proof</button>
+        <button onclick="closePopup()">Cancel</button>
     </div>
 </div>
 
+<!-- IMPORTANT -->
 <script src="script.js"></script>
 
 </body>

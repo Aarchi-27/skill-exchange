@@ -1,102 +1,58 @@
-let users = JSON.parse(localStorage.getItem("users")) || [];
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Skill Exchange</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 
-function saveUser() {
-    let name = document.getElementById("name").value;
-    let have = document.getElementById("have").value.split(",").map(s => s.trim());
-    let want = document.getElementById("want").value.split(",").map(s => s.trim());
+<body>
 
-    if (!name || have.length === 0 || want.length === 0) {
-        alert("Please fill all fields");
-        return;
-    }
+<div class="header">
+    <h1>🚀 SkillSwap</h1>
+    <p>Learn, Teach & Grow with Real People</p>
+    <p>⚡ Instant Skill Matching</p>
+</div>
 
-    let user = { name, have, want };
-    users.push(user);
+<button onclick="shareSite()">📲 Share & Earn</button>
 
-    localStorage.setItem("users", JSON.stringify(users));
+<h1>💼 Skill Exchange</h1>
 
-    displayUsers();
+<div class="form">
+    <input id="name" placeholder="Your Name">
+    <input id="have" placeholder="Skills you have (comma separated)">
+    <input id="want" placeholder="Skills you want">
 
-    let matches = findMatches(user);
-    displayMatches(matches);
-}
+    <button onclick="saveUser()">Submit</button>
+</div>
 
-function displayUsers() {
-    let div = document.getElementById("users");
-    div.innerHTML = "";
+<p id="usersCount">👥 10 people using now</p>
+<p id="slots">⚠️ Only few unlocks left today!</p>
 
-    users.forEach(u => {
-        div.innerHTML += `
-            <div class="card">
-                <h3>${u.name}</h3>
-                <p>Have: ${u.have.join(", ")}</p>
-                <p>Want: ${u.want.join(", ")}</p>
-            </div>
-        `;
-    });
-}
+<h2>All Users</h2>
+<div id="users"></div>
 
-function findMatches(currentUser) {
-    let matches = [];
+<h2>Matches</h2>
+<div id="matches"></div>
 
-    users.forEach(u => {
-        if (u !== currentUser) {
-            let match = u.have.some(skill => currentUser.want.includes(skill));
-            if (match) matches.push(u);
-        }
-    });
+<!-- PAYMENT POPUP -->
+<div id="paymentPopup" class="popup">
+    <div class="popup-content">
+        <h2>Unlock Contact ₹49 🔥</h2>
 
-    return matches;
-}
+        <p>Pay using GPay / UPI</p>
 
-function displayMatches(matches) {
-    let div = document.getElementById("matches");
-    div.innerHTML = "";
+        <a href="upi://pay?pa=aarchimodi27@okhdfcbank&pn=SkillSwap&am=49&cu=INR">
+            <button>Pay ₹49 via GPay 🚀</button>
+        </a>
 
-    if (matches.length === 0) {
-        div.innerHTML = "<p>No matches found</p>";
-        return;
-    }
+        <p>After payment, click below 👇</p>
 
-    matches.forEach(u => {
-        div.innerHTML += `
-            <div class="card">
-                <h3>${u.name}</h3>
-                <p>Matching Skills: ${u.have.join(", ")}</p>
-                <button onclick="unlock()">Unlock ₹49 🔥</button>
-            </div>
-        `;
-    });
-}
+        <button onclick="verifyPayment()">Submit Proof ✅</button>
+        <button onclick="closePopup()">Cancel ❌</button>
+    </div>
+</div>
 
-function unlock() {
-    document.getElementById("paymentPopup").style.display = "block";
-}
-
-function closePopup() {
-    document.getElementById("paymentPopup").style.display = "none";
-}
-
-function verifyPayment() {
-    alert("Payment verified 🎉");
-
-    document.getElementById("matches").innerHTML += `
-        <div class="card">
-            <a href="https://wa.me/917990392626">
-                <button>Chat on WhatsApp 💬</button>
-            </a>
-        </div>
-    `;
-
-    closePopup();
-}
-
-function shareSite() {
-    let text = "🔥 Try this website 👉 https://aarchi-27.github.io/skill-exchange/";
-    window.location.href = "https://wa.me/7990392626=" + encodeURIComponent(text);
-}
-
-window.onload = function () {
-    displayUsers();
 <script src="script.js"></script>
-};
+
+</body>
+</html>

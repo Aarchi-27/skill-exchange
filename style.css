@@ -6,23 +6,12 @@ body {
     margin: 0;
 }
 
-/* HEADER */
 .header {
     background: #00c853;
     padding: 20px;
     border-radius: 0 0 20px 20px;
 }
 
-.header h1 {
-    margin: 0;
-}
-
-.header p {
-    margin: 5px;
-    font-size: 14px;
-}
-
-/* FORM */
 .form {
     background: #1e1e1e;
     padding: 20px;
@@ -32,7 +21,6 @@ body {
     border-radius: 10px;
 }
 
-/* INPUT */
 input {
     width: 90%;
     padding: 10px;
@@ -41,7 +29,6 @@ input {
     border: none;
 }
 
-/* BUTTON */
 button {
     padding: 10px 20px;
     background: #00c853;
@@ -56,7 +43,6 @@ button:hover {
     background: #00e676;
 }
 
-/* CARDS */
 .card {
     background: #1e1e1e;
     padding: 15px;
@@ -70,7 +56,6 @@ button:hover {
     transform: scale(1.05);
 }
 
-/* POPUP */
 .popup {
     display: none;
     position: fixed;
@@ -81,7 +66,6 @@ button:hover {
     background: rgba(0,0,0,0.7);
 }
 
-/* POPUP BOX */
 .popup-content {
     background: #1e1e1e;
     padding: 20px;
@@ -89,5 +73,4 @@ button:hover {
     width: 90%;
     max-width: 300px;
     border-radius: 10px;
-    text-align: center;
 }

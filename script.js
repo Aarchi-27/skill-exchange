@@ -2,11 +2,13 @@ let users = JSON.parse(localStorage.getItem("users")) || [];
 
 // SAVE USER
 function saveUser() {
-    alert("Finding best matches... 🔍");
+    document.getElementById("loader").style.display = "block";
 
     setTimeout(() => {
+        document.getElementById("loader").style.display = "none";
         actualSave();
-    }, 1000);
+    }, 1500);
+}
 }
 
 function actualSave() {

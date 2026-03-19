@@ -1,42 +1,101 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Skill Exchange</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+let users = JSON.parse(localStorage.getItem("users")) || [];
 
-<body>
+function saveUser() {
+    let name = document.getElementById("name").value;
+    let have = document.getElementById("have").value.split(",").map(s => s.trim());
+    let want = document.getElementById("want").value.split(",").map(s => s.trim());
 
-<div class="header">
-    <h1>🚀 SkillSwap</h1>
-    <p>Learn, Teach & Grow with Real People</p>
-</div>
+    if (!name || have.length === 0 || want.length === 0) {
+        alert("Please fill all fields");
+        return;
+    }
 
-<button onclick="shareSite()">📲 Share & Earn</button>
+    let user = { name, have, want };
+    users.push(user);
 
-<div class="form">
-    <input id="name" placeholder="Your Name">
-    <input id="have" placeholder="Skills you have">
-    <input id="want" placeholder="Skills you want">
+    localStorage.setItem("users", JSON.stringify(users));
 
-    <button onclick="saveUser()">Submit</button>
-</div>
+    displayUsers();
 
-<div id="users"></div>
-<div id="matches"></div>
+    let matches = findMatches(user);
+    displayMatches(matches);
+}
 
-<!-- POPUP -->
-<div id="paymentPopup" class="popup">
-    <div class="popup-content">
-        <h2>Unlock ₹49</h2>
+function displayUsers() {
+    let div = document.getElementById("users");
+    div.innerHTML = "";
 
-        <button onclick="verifyPayment()">Submit Proof</button>
-        <button onclick="closePopup()">Cancel</button>
-    </div>
-</div>
+    users.forEach(u => {
+        div.innerHTML += `
+            <div class="card">
+                <h3>${u.name}</h3>
+                <p>Have: ${u.have.join(", ")}</p>
+                <p>Want: ${u.want.join(", ")}</p>
+            </div>
+        `;
+    });
+}
 
-<!-- IMPORTANT -->
-<script src="script.js"></script>
+function findMatches(currentUser) {
+    let matches = [];
 
-</body>
-</html>
+    users.forEach(u => {
+        if (u !== currentUser) {
+            let match = u.have.some(skill => currentUser.want.includes(skill));
+            if (match) matches.push(u);
+        }
+    });
+
+    return matches;
+}
+
+function displayMatches(matches) {
+    let div = document.getElementById("matches");
+    div.innerHTML = "";
+
+    if (matches.length === 0) {
+        div.innerHTML = "<p>No matches found</p>";
+        return;
+    }
+
+    matches.forEach(u => {
+        div.innerHTML += `
+            <div class="card">
+                <h3>${u.name}</h3>
+                <p>Matching Skills: ${u.have.join(", ")}</p>
+                <button onclick="unlock()">Unlock ₹49 🔥</button>
+            </div>
+        `;
+    });
+}
+
+function unlock() {
+    document.getElementById("paymentPopup").style.display = "block";
+}
+
+function closePopup() {
+    document.getElementById("paymentPopup").style.display = "none";
+}
+
+function verifyPayment() {
+    alert("Payment verified 🎉");
+
+    document.getElementById("matches").innerHTML += `
+        <div class="card">
+            <a href="https://wa.me/919XXXXXXXXX">
+                <button>Chat on WhatsApp 💬</button>
+            </a>
+        </div>
+    `;
+
+    closePopup();
+}
+
+function shareSite() {
+    let text = "🔥 Try this website 👉 https://aarchi-27.github.io/skill-exchange/";
+    window.location.href = "https://wa.me/?text=" + encodeURIComponent(text);
+}
+
+window.onload = function () {
+    displayUsers();
+};

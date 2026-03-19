@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Skill Exchange</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="header">
+    <h1>🚀 SkillSwap</h1>
+    <p>Learn, Teach & Grow with Real People</p>
+    <p>✅ 100+ Students Joined</p>
+    <p>💬 Trusted by Learners</p>
+    <p>⚡ Instant Skill Matching</p>
+</div>
+
+<button onclick="shareSite()">📲 Share & Earn</button>
+
+<h1>💼 Skill Exchange</h1>
+
+<!-- INPUT FORM -->
+<div class="form">
+    <input id="name" placeholder="Your Name">
+    <input id="have" placeholder="Skills you have (comma separated)">
+    <input id="want" placeholder="Skills you want">
+    
+    <button onclick="saveUser()">Submit</button>
+</div>
+
+<h2>All Users</h2>
+<div id="users"></div>
+
+<h2>Matches</h2>
+<div id="matches"></div>
+
+<!-- PAYMENT POPUP -->
+<div id="paymentPopup" class="popup">
+    <div class="popup-content">
+        <h2>Unlock Now ₹49 🔥</h2>
+        <p>Pay ₹49 via GPay</p>
+<a href="https://wa.me/917990392626?text=Hi%20I%20paid%20₹49%20for%20SkillSwap">
+    <p>📞 Contact will be shared via WhatsApp</p>
+    <button>Chat on WhatsApp 💬</button>
+</a>
+
+        <p>After payment, upload screenshot 👇</p>
+
+        <input type="file" id="screenshot">
+
+        <button onclick="verifyPayment()">Submit Proof ✅</button>
+        <button onclick="closePopup()">Cancel ❌</button>
+    </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

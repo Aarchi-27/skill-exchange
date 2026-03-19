@@ -1,150 +1,76 @@
-let users = JSON.parse(localStorage.getItem("users")) || [];
-
-// SAVE USER
-function saveUser() {
-    alert("Clicked ✅");
-}
-    setTimeout(() => {
-        document.getElementById("loader").style.display = "none";
-        actualSave();
-    }, 1500);
-}
+body {
+    font-family: Arial;
+    background: linear-gradient(to right, #141e30, #243b55);
+    color: white;
+    text-align: center;
+    margin: 0;
 }
 
-function actualSave() {
-    let name = document.getElementById("name").value;
-    let have = document.getElementById("have").value.split(",").map(s => s.trim());
-    let want = document.getElementById("want").value.split(",").map(s => s.trim());
-
-    if (!name || have.length === 0 || want.length === 0) {
-        alert("Please fill all fields");
-        return;
-    }
-
-    let user = { name, have, want };
-    users.push(user);
-
-    localStorage.setItem("users", JSON.stringify(users));
-
-    displayUsers();
-
-    let matches = findMatches(user);
-    displayMatches(matches);
+.header {
+    background: #00c853;
+    padding: 20px;
+    border-radius: 0 0 20px 20px;
 }
 
-// DISPLAY USERS
-function displayUsers() {
-    let div = document.getElementById("users");
-    div.innerHTML = "";
-
-    users.forEach(u => {
-        div.innerHTML += `
-            <div class="card">
-                <h3>${u.name}</h3>
-                <p>Have: ${u.have.join(", ")}</p>
-                <p>Want: ${u.want.join(", ")}</p>
-            </div>
-        `;
-    });
+.form {
+    background: #1e1e1e;
+    padding: 20px;
+    margin: 20px auto;
+    width: 90%;
+    max-width: 320px;
+    border-radius: 10px;
 }
 
-// FIND MATCHES
-function findMatches(currentUser) {
-    let matches = [];
-
-    users.forEach(u => {
-        if (u !== currentUser) {
-            let match = u.have.some(skill => currentUser.want.includes(skill));
-            if (match) matches.push(u);
-        }
-    });
-
-    return matches;
+input {
+    width: 90%;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    border: none;
 }
 
-// DISPLAY MATCHES
-function displayMatches(matches) {
-    let div = document.getElementById("matches");
-    div.innerHTML = "";
-
-    if (matches.length === 0) {
-        div.innerHTML = "<p>No matches found</p>";
-        return;
-    }
-
-    matches.forEach(u => {
-        div.innerHTML += `
-            <div class="card">
-                <h3>${u.name}</h3>
-                <p>Matching Skills: ${u.have.join(", ")}</p>
-                <p style="color:yellow;">⚡ Instant contact after payment</p>
-                <button onclick="unlock()">Unlock Now ₹49 🔥</button>
-            </div>
-        `;
-    });
+button {
+    padding: 10px 20px;
+    background: #00c853;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
 }
 
-// POPUP OPEN
-function unlock() {
-    document.getElementById("paymentPopup").style.display = "block";
-    reduceSlot();
+button:hover {
+    background: #00e676;
 }
 
-// CLOSE POPUP
-function closePopup() {
-    document.getElementById("paymentPopup").style.display = "none";
+.card {
+    background: #1e1e1e;
+    padding: 15px;
+    margin: 15px auto;
+    width: 90%;
+    border-radius: 10px;
+    transition: 0.3s;
 }
 
-// VERIFY PAYMENT
-function verifyPayment() {
-    let file = document.getElementById("screenshot").files[0];
-
-    if (!file) {
-        alert("Please upload screenshot!");
-        return;
-    }
-
-    alert("Payment verified 🎉");
-
-    document.getElementById("matches").innerHTML += `
-        <div class="card">
-            <p>📞 Contact: 7990392626</p>
-        </div>
-    `;
-
-    closePopup();
+.card:hover {
+    transform: scale(1.05);
 }
 
-// SHARE BUTTON
-function shareSite() {
-    let text = "🔥 Try this website 👉 https://aarchi-27.github.io/skill-exchange/";
-    document.getElementById("matches").innerHTML += `
-    <div class="card">
-        <a href="https://wa.me/917990392626?text=Hi%20I%20paid%20₹49">
-        <p>📞 Contact will be shared via WhatsApp</p>
-            <button>Chat on WhatsApp 💬</button>
-        </a>
-    </div>
-`;
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
 }
 
-// URGENCY
-let slots = 5;
-function reduceSlot() {
-    if (slots > 0) {
-        slots--;
-        document.getElementById("slots").innerText = "⚠️ Only " + slots + " slots left today!";
-    }
+.popup-content {
+    background: #1e1e1e;
+    padding: 20px;
+    margin: 100px auto;
+    width: 90%;
+    max-width: 300px;
+    border-radius: 10px;
 }
-
-// FAKE USERS
-setInterval(() => {
-    let random = Math.floor(Math.random() * 10) + 10;
-    let el = document.getElementById("usersCount");
-    if (el) el.innerText = "👥 " + random + " people using now";
-}, 3000);
-
-// LOAD
-window.onload = function () {
-    displayUsers();
-};

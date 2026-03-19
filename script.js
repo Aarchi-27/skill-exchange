@@ -115,4 +115,5 @@ setInterval(() => {
 // LOAD
 window.onload = function () {
     displayUsers();
+    alert("✅ Profile added successfully!");
 };

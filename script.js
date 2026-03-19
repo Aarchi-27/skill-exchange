@@ -2,8 +2,8 @@ let users = JSON.parse(localStorage.getItem("users")) || [];
 
 // SAVE USER
 function saveUser() {
-    document.getElementById("loader").style.display = "block";
-
+    alert("Clicked ✅");
+}
     setTimeout(() => {
         document.getElementById("loader").style.display = "none";
         actualSave();

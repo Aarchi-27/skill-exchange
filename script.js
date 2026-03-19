@@ -75,6 +75,7 @@ function displayMatches(matches) {
             <div class="card">
                 <h3>${u.name}</h3>
                 <p>Matching Skills: ${u.have.join(", ")}</p>
+                <p style="color:yellow;">⚡ Instant contact after payment</p>
                 <button onclick="unlock()">Unlock Now ₹49 🔥</button>
             </div>
         `;

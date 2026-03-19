@@ -24,12 +24,14 @@ body {
     opacity: 0.95;
 }
 .form {
-    background: #1e1e1e;
+    background: rgba(30,30,30,0.8);
+    backdrop-filter: blur(10px);
     padding: 20px;
     margin: 20px auto;
     width: 90%;
     max-width: 320px;
-    border-radius: 10px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
 }
 
 input {
@@ -41,30 +43,31 @@ input {
 }
 
 button {
-    padding: 10px 20px;
-    background: #00c853;
+    padding: 12px 22px;
+    background: linear-gradient(45deg, #00c853, #00e676);
     color: white;
     border: none;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 8px;
     transition: 0.3s;
+    font-weight: bold;
 }
 
 button:hover {
-    background: #00e676;
+    transform: scale(1.05);
+    box-shadow: 0 0 10px #00e676;
 }
-
 .card {
-    background: #1e1e1e;
+    background: rgba(30,30,30,0.9);
     padding: 15px;
     margin: 15px auto;
     width: 90%;
-    border-radius: 10px;
-    transition: 0.3s;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.4);
 }
 
 .card:hover {
-    transform: scale(1.05);
+    transform: translateY(-5px);
 }
 
 .popup {
@@ -79,9 +82,12 @@ button:hover {
 
 .popup-content {
     background: #1e1e1e;
-    padding: 20px;
-    margin: 100px auto;
+    padding: 25px;
+    margin: 120px auto;
     width: 90%;
-    max-width: 300px;
-    border-radius: 10px;
+    max-width: 320px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
 }
+

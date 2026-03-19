@@ -96,6 +96,7 @@ function verifyPayment() {
     `;
 
     closePopup();
+    <p style="color:red;">⚠️ Only few unlocks left today!</p>
 }
 }
 

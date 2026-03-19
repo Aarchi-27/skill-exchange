@@ -85,7 +85,7 @@ function closePopup() {
 
 // VERIFY PAYMENT
 function verifyPayment() {
-    alert("Payment verified 🎉");
+    alert("Contact unlocked 🎉");
 
     document.getElementById("matches").innerHTML += `
         <div class="card">
@@ -96,6 +96,7 @@ function verifyPayment() {
     `;
 
     closePopup();
+}
 }
 
 // SHARE

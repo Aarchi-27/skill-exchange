@@ -85,4 +85,6 @@ function shareSite() {
     window.location.href = "https://wa.me/?text=" + encodeURIComponent(text);
 }
 
-window.onload = () => displayUsers();
+window.onload = function () {
+    displayUsers();
+};
